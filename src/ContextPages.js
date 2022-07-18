@@ -1,19 +1,10 @@
-import React, { createContext, useState, useContext } from "react";
+import React, { useContext } from "react";
+import AppContext from "./AppContext";
 
-const LangContext = createContext()
-const { Provider: LangProvider, Consumer: LangConsumer } = LangContext
+const { LangContext, LangProvider, ThemeContext, ThemeProvider } = AppContext
 
-const ThemeContext = createContext()
-const { Provider: ThemeProvider, Consumer: ThemeConsumer } = ThemeContext
 
 function LandingPage() {
-    const [lang, setLang] = useState("🇮🇩")
-    const changeLang = e => setLang(e.target.value)
-    const langState = { lang, changeLang }
-
-    const [theme, setTheme] = useState("light")
-    const changeTheme = e => setTheme(e.target.value)
-    const themeState = { theme, changeTheme }
 
 
     const Header = () => {
@@ -75,8 +66,8 @@ function LandingPage() {
     }
 
     return (
-        <LangProvider value={langState}>
-            <ThemeProvider value={themeState}>
+        <LangProvider>
+            <ThemeProvider>
                 <Header />
                 <Menu />
                 <Content />
